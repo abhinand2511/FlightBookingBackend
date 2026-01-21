@@ -32,3 +32,13 @@ FlightBookingBackend/
 ├── .env
 ├── package.json
 └── README.md
+
+//packages for the project
+
+npm init -y
+npm install express prisma @prisma/client
+npm install jsonwebtoken bcrypt zod dotenv
+npm install swagger-ui-express swagger-jsdoc
+npm install helmet cors express-rate-limit
+npm install --save-dev nodemon jest supertest
+
