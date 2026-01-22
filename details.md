@@ -42,4 +42,4 @@ npm install swagger-ui-express swagger-jsdoc
 npm install helmet cors express-rate-limit
 npm install --save-dev nodemon jest supertest
 
-helmet package helps to secure express apps by setting http headers response.
+*helmet package helps to secure express apps by setting http headers response. It is basically a middleware which adds or removes headers in the http according to the security standards. 
