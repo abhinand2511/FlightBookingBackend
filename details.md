@@ -51,3 +51,5 @@ npm install --save-dev nodemon jest supertest
 *rate-limit for rate llimiting, so a single user cannot spam the api continuosly which might lead for server crash
 
 *nodemon for server automatic reload, only for dev dependency.
+
+*bcrypt and zod for password hashing and validation.
