@@ -53,3 +53,5 @@ npm install --save-dev nodemon jest supertest
 *nodemon for server automatic reload, only for dev dependency.
 
 *bcrypt and zod for password hashing and validation.
+
+*jest and supertest for unit and integration tests.
