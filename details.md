@@ -45,3 +45,5 @@ npm install --save-dev nodemon jest supertest
 *helmet package helps to secure express apps by setting http headers response. It is basically a middleware which adds or removes headers in the http according to the security standards. 
 
 *swagger helps for api documentation, basically provides ui like thing instead of manually going for postman.
+
+*prisma for object relational mapping, no need for writing sql query in the traditional way.
