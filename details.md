@@ -47,3 +47,5 @@ npm install --save-dev nodemon jest supertest
 *swagger helps for api documentation, basically provides ui like thing instead of manually going for postman.
 
 *prisma for object relational mapping, no need for writing sql query in the traditional way.
+
+*rate-limit for rate llimiting, so a single user cannot spam the api continuosly which might lead for server crash
