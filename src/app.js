@@ -12,3 +12,11 @@ app.use(rateLimit({
     windowMs: 15 * 60 * 100,
     limit: 100,
 }))
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+    res.json({message: "Flight booking running API running successfully."})
+})
+
+export default app;
