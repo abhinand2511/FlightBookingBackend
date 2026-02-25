@@ -16,53 +16,77 @@ enum BookingStatus {
   PENDING
   CONFIRMED
   CANCELLED
+  COMPLETED
 }
 
 enum PaymentStatus {
-  SUCCESS
+  PENDING
+  COMPLETED
   FAILED
+  REFUNDED
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  bookings  Booking[]
-  createdAt DateTime @default(now())
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  role          Role      @default(USER)
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  bookings      Booking[]
 }
 
 model Flight {
-  id             String   @id @default(uuid())
-  flightNumber   String   @unique
-  from           String
-  to             String
-  departureTime  DateTime
-  arrivalTime    DateTime
-  price          Float
-  totalSeats     Int
-  availableSeats Int
-  bookings       Booking[]
-  createdAt      DateTime @default(now())
+  id              String    @id @default(uuid())
+  flightNumber    String    @unique
+  airline         String
+  from            String
+  to              String
+  departureTime   DateTime
+  arrivalTime     DateTime
+  price           Float
+  totalSeats      Int
+  availableSeats  Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  bookings        Booking[]
+  
+  @@index([from, to, departureTime])
 }
 
 model Booking {
-  id        String        @id @default(uuid())
-  userId    String
-  flightId  String
-  status    BookingStatus @default(PENDING)
-  user      User          @relation(fields: [userId], references: [id])
-  flight    Flight        @relation(fields: [flightId], references: [id])
-  payment   Payment?
-  createdAt DateTime      @default(now())
+  id              String        @id @default(uuid())
+  bookingNumber   String        @unique
+  userId          String
+  flightId        String
+  seatCount       Int
+  totalPrice      Float
+  status          BookingStatus @default(PENDING)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  user            User          @relation(fields: [userId], references: [id])
+  flight          Flight        @relation(fields: [flightId], references: [id])
+  payment         Payment?
+  
+  @@index([userId])
+  @@index([bookingNumber])
 }
 
 model Payment {
-  id        String        @id @default(uuid())
-  bookingId String        @unique
-  amount    Float
-  status    PaymentStatus
-  booking   Booking       @relation(fields: [bookingId], references: [id])
-  createdAt DateTime      @default(now())
+  id              String        @id @default(uuid())
+  bookingId       String        @unique
+  amount          Float
+  status          PaymentStatus @default(PENDING)
+  paymentMethod   String
+  transactionId   String?       @unique
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  booking         Booking       @relation(fields: [bookingId], references: [id])
 }
